@@ -2,7 +2,6 @@ package examples.producer;
 
 import com.alibaba.fastjson.JSON;
 import examples.data.Data;
-import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 
@@ -21,7 +20,6 @@ public class SyncProducer extends Producer {
     }
 
      void run() {
-        KafkaProducer<String, String> producer = getProducer();
         try {
             while (true) {
                 Data data = new Data();
