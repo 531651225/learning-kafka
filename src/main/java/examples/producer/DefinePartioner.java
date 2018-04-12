@@ -26,7 +26,6 @@ public class DefinePartioner extends Producer {
     }
 
      void run() {
-        KafkaProducer<String, String> producer = getProducer();
         try {
             while (true) {
                 Data data = new Data();
