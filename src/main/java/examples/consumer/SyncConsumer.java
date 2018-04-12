@@ -14,7 +14,7 @@ public class SyncConsumer extends Consumer{
         this.topic = topic;
     }
     public static void main(String[] args){
-        String topic = "testconsumer";//regex
+        String topic = "testkafka";//regex
         SyncConsumer consumer = new SyncConsumer(topic);
         consumer.run();
     }
