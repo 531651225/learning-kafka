@@ -1,5 +1,6 @@
 package examples.consumer;
 
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 
 import java.util.Properties;
@@ -22,4 +23,11 @@ public abstract class Consumer {
     }
 
     abstract void run();
+
+    /**
+     * 处理数据
+     */
+    protected void processData(ConsumerRecord record){
+        System.out.printf("topic=%s,partion=%s,offset=%d\n", record.topic(), record.partition(), record.offset());
+    }
 }

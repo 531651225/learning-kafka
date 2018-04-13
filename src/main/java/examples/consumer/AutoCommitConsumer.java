@@ -26,7 +26,7 @@ public class AutoCommitConsumer extends Consumer{
             ConsumerRecords<String, String> records = consumer.poll(100);
             System.out.println("poll returned " + records.count() + " records");
             for (ConsumerRecord<String, String> record : records) {
-                System.out.println(record.value());
+                processData(record);
             }
         }
     }

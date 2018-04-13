@@ -26,7 +26,7 @@ public class SyncConsumer extends Consumer{
             ConsumerRecords<String, String> records = consumer.poll(100);
             System.out.println("poll returned " + records.count() + " records");
             for (ConsumerRecord<String, String> record : records) {
-                System.out.printf("topic=%s,partion=%s,offset=%d\n",record.topic(),record.partition(),record.offset());
+                processData(record);
             }
             //处理完所以记录 再提交
             doCommitSync();
