@@ -58,12 +58,7 @@ public class DefineOffsetConsumer extends Consumer{
 
     }
 
-    /**
-     * 处理数据
-     */
-    private void processData(ConsumerRecord record){
-        System.out.printf("topic=%s,partion=%s,offset=%d\n", record.topic(), record.partition(), record.offset());
-    }
+
 
     /**
      * 存储offset

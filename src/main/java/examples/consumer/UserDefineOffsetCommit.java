@@ -61,7 +61,7 @@ public class UserDefineOffsetCommit extends Consumer{
                 System.out.println("poll returned " + records.count() + " records");
                 for (ConsumerRecord<String, String> record : records) {
                     //处理数据
-                    System.out.printf("topic=%s,partion=%s,offset=%d\n", record.topic(), record.partition(), record.offset());
+                    processData(record);
                     //写入最新的offset
                     currentOffsets.put(new TopicPartition(record.topic(), record.partition()), new OffsetAndMetadata(record.offset() + 1, ""));
                 }
