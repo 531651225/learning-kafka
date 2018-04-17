@@ -19,21 +19,21 @@ public class DefinePartioner extends Producer {
         this.producer = getProducer();
     }
     public static void main(String[] args){
-        String topic = "testkafka";
+        String topic = "testpartioner";
         final DefinePartioner producer = new DefinePartioner(topic);
         producer.run();
         Runtime.getRuntime().addShutdownHook(new Thread(() -> producer.producer.close()));
     }
 
      void run() {
-        try {
+         int wait = 500;
+         try {
             while (true) {
                 Data data = new Data();
-                ProducerRecord<String, String> record = new ProducerRecord<String, String>(topic, ""+new Random().nextInt(100), JSON.toJSON(data).toString());
+                ProducerRecord<String, String> record = new ProducerRecord<String, String>(topic, new Random().nextInt(100)+2+"", JSON.toJSON(data).toString());
+                Thread.sleep(wait);
                 Future<RecordMetadata> future = producer.send(record);
-
                 RecordMetadata metadata = metadata = future.get();
-
                 System.out.println(metadata.toString());
             }
         } catch (InterruptedException e) {
@@ -50,7 +50,7 @@ public class DefinePartioner extends Producer {
     KafkaProducer<String, String> getProducer(){
         Properties config = new Properties();
         config.put("client.id", "my_client_id");
-        config.put("bootstrap.servers", "kylin-test.0303041005.zbj:6667,kylin-test.0303041004.zbj:6667");
+        config.put("bootstrap.servers", "slave1:9092,slave2:9092,slave3:9092");
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         config.put("acks", "all");

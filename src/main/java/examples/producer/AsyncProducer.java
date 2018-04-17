@@ -11,7 +11,7 @@ public class AsyncProducer extends Producer {
         this.topic = topic;
     }
     public static void main(String[] args){
-        String topic = "testconsumer";
+        String topic = "testkafka";
         final AsyncProducer producer = new AsyncProducer(topic);
         producer.run();
         Runtime.getRuntime().addShutdownHook(new Thread(() -> producer.producer.close()));
@@ -26,16 +26,16 @@ public class AsyncProducer extends Producer {
     }
 
 }
-//异步发送消息,同事对异常情况进行处理
+//异步发送消息,同时对异常情况进行处理
 class RecordCallback implements Callback{
 
     @Override
     public void onCompletion(RecordMetadata recordMetadata, Exception e) {
         if(null != e){
             e.printStackTrace();
-            System.out.println(recordMetadata.toString());
+            System.out.printf("send error for offset %s\n",recordMetadata);
         }else {
-            System.out.println(recordMetadata.toString());
-        }
+            System.out.printf("send sucess %s\n",recordMetadata);
+            }
     }
 }

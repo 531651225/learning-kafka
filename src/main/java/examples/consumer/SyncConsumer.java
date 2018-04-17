@@ -14,7 +14,7 @@ public class SyncConsumer extends Consumer{
         this.topic = topic;
     }
     public static void main(String[] args){
-        String topic = "testkafka";//regex
+        String topic = "test";//regex
         SyncConsumer consumer = new SyncConsumer(topic);
         consumer.run();
     }
@@ -52,5 +52,9 @@ public class SyncConsumer extends Consumer{
             // commit失败是不可恢复的错误。如果有其它的内部状态依赖于commit，应该在这里进行处理。
             //log.debug("Commit failed", e);
         }
+    }
+
+    public void shutdown() throws InterruptedException {
+        consumer.wakeup();
     }
 }

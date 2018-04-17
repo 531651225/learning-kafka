@@ -24,13 +24,12 @@ public class SyncProducer extends Producer {
             while (true) {
                 Data data = new Data();
                 ProducerRecord<String, String> record = new ProducerRecord<String, String>(topic, null, JSON.toJSON(data).toString());
+                //不阻塞于future.get()即可认为是异步发送
                 Future<RecordMetadata> future = producer.send(record);
-
                 RecordMetadata metadata = null;
-
                 metadata = future.get();
+                System.out.printf("send success for offset %s\n",metadata);
 
-                System.out.println(metadata.partition());
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

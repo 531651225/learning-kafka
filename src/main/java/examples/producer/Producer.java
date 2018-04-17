@@ -13,8 +13,8 @@ public abstract class Producer {
 
     KafkaProducer<String, String> getProducer(){
         Properties config = new Properties();
-        config.put("client.id", "my_client_id");
-        config.put("bootstrap.servers", "kylin-test.0303041005.zbj:6667,kylin-test.0303041004.zbj:6667");
+        config.put("client.id", "my_client_id1");
+        config.put("bootstrap.servers", "slave1:9092,slave2:9092,slave3:9092");
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         config.put("acks", "all");

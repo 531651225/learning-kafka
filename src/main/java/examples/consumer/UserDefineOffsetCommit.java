@@ -6,7 +6,6 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.OffsetAndMetadata;
 import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.errors.WakeupException;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
@@ -43,7 +42,7 @@ public class UserDefineOffsetCommit extends Consumer{
 
         @Override
         public void onPartitionsAssigned(Collection<TopicPartition> partitions) {
-
+            System.out.println("has assigned partions");
         }
     }
 
@@ -53,8 +52,6 @@ public class UserDefineOffsetCommit extends Consumer{
 
    void run(){
         try {
-
-
             consumer.subscribe(Arrays.asList(topic), new HandleRebalance());
             while (true) {
                 ConsumerRecords<String, String> records = consumer.poll(100);

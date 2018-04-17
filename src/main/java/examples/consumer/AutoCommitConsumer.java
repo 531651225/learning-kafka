@@ -41,6 +41,5 @@ public class AutoCommitConsumer extends Consumer{
         props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         return new KafkaConsumer<>(props);
-
     }
 }

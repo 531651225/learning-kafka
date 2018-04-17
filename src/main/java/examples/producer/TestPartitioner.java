@@ -32,6 +32,8 @@ public class TestPartitioner implements Partitioner{
 
     @Override
     public void configure(Map<String, ?> map) {
-
+        for (Map.Entry<String, ?> entry : map.entrySet()){
+            System.out.println(entry.getValue());
+        }
     }
 }
